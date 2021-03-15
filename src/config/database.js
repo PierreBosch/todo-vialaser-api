@@ -1,7 +1,7 @@
 
 module.exports = {
     dialect: 'postgres',
-    url: 'postgres://ugtpnrtuhkfcer:66c51cf257f3ca5a773738920a37decbddff2f55ac9799718bf2f91ff4f3e35f@ec2-52-7-115-250.compute-1.amazonaws.com:5432/dcge13l5pun5dv',
+    url: 'postgres://pxbvalel:mB7a6gC3UpP7DXei2kz0b7Dt8mYP6EGZ@ziggy.db.elephantsql.com:5432/pxbvalel',
     dialectOptions: {
         rejectUnauthorized: false
     },

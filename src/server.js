@@ -1,30 +1,17 @@
 require("dotenv").config({
     path: process.env.NODE_ENV === "test" ? ".env.test" : ".env"
 });
-  
-const express = require("express");
+
+const express = require('express');
 const cors = require("cors");
-const routes = require("./routes");
-  
-class App {
+const routes = require('./routes');
 
-    constructor() {
-        this.express = express();
-        this.isDev = process.env.NODE_ENV !== "production";
+require('./database');
 
-        this.middlewares();
-        this.routes();
-    }
+const app = express();
 
-    middlewares() {
-        this.express.use(express.json());
-    }
+app.use(cors());
+app.use(express.json());
+app.use(`/api/v${process.env.API_VERSION}`,routes);
 
-    routes() {
-        this.express.use(cors());
-        this.express.use(`/api/v${process.env.API_VERSION}`, routes);
-    }
-
-}
-
-module.exports = new App().express;
+app.listen(process.env.PORT || 8080);

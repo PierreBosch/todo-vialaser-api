@@ -9,10 +9,6 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      title: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       topic: {
         type: Sequelize.STRING,
         allowNull: false,

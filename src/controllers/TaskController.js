@@ -26,9 +26,10 @@ class TaskController {
 
     async store(req, res) {
         try {
-            const { description, topic } = req.body;
+            const { description, topic, author, avatar_url } = req.body;
+            console.log(req.body);
 
-            const task = await Task.create({ description, topic });
+            const task = await Task.create({ description, topic, avatar_url, author });
 
             res.json({ task });
         } catch (error) {

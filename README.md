@@ -47,4 +47,4 @@ $ yarn dev
 
 ## 💻 API Docs
 
-To access the API documentation [click here](https://github.com/PierreBosch/todo-vialaser-api) 
+[To access the API documentation click here](./docs/RestAPI.md) 

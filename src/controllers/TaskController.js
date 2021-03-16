@@ -1,22 +1,46 @@
 const Task = require('../models/Task');
 const isEmpty = require('lodash/isEmpty');
+const { Op } = require("sequelize");
 
 class TaskController {
 
     async index(req, res) {
         try {
             const done = req.query.done ?? null;
+            const author = req.query.author ?? null;
+
+            if(!author) {
+                return res.status(400).json({ message: "Author is required" });
+            }
+
             let tasks = [];
 
             if(!isEmpty(done)) {
-                tasks = await Task.findAll({ where: { done }});
+                tasks = await Task.findAll({
+                    where: { 
+                        [Op.and]: [
+                            { done },
+                            { author }
+                        ]
+                    },
+                    order: [
+                        ['updated_at', 'DESC'],
+                    ],
+                });
 
                 return res.json({ tasks });
             }
             
-            tasks = await Task.findAll();
-
-            await Task.findAll({ where: { done }});
+            tasks = await Task.findAll({
+                where: { 
+                    [Op.and]: [
+                        { author }
+                    ]
+                },
+                order: [
+                    ['updated_at', 'DESC'],
+                ],
+            });
 
             return res.json({ tasks });
         } catch (error) {
